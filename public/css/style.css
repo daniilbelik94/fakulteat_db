@@ -1,0 +1,78 @@
+/* public/css/style.css */
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+}
+.university {
+    padding: 15px;
+}
+.faculty {
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+.faculty__name {
+    margin-top: 0;
+    background-color: #e0e0e0;
+    padding: 5px;
+    font-size: 1.5em;
+}
+.faculty__dean {
+    font-style: italic;
+}
+
+.course {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+.course__title {
+    margin-top: 0;
+    background-color: #ededed;
+    padding: 5px;
+    font-size: 1.2em;
+}
+.course__module-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.module { /* Block */
+    border: 1px solid #eee;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fdfdfd;
+}
+.module__name {
+    margin-top: 0;
+    background-color: #f5f5f5;
+    padding: 3px;
+    font-size: 1.1em;
+}
+.module__semester, .module__lecturer {
+    margin-bottom: 5px;
+}
+.module__student-heading {
+    font-size: 1em;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.student-list {
+    list-style-type: circle;
+    margin-left: 20px;
+    padding-left: 0;
+}
+.student-list__item {
+    margin-bottom: 3px;
+}
+.student-list__matriculation-number {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #555;
+}

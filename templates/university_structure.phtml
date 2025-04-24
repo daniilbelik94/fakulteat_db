@@ -1,0 +1,65 @@
+<?php // templates/university_structure.phtml ?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Universitätsstruktur (PHP/PDO & BEM)</title>
+    <link rel="stylesheet" href="/public/css/style.css"> <?php // Ссылка на внешний CSS ?>
+</head>
+<body>
+
+<main class="university">
+    <h1>Universitätsstruktur</h1>
+
+    <?php if (empty($universityViewData)): ?>
+        <p>Keine Daten gefunden.</p>
+    <?php else: ?>
+        <?php foreach ($universityViewData as $faculty): ?>
+            <section class="faculty">
+                <h2 class="faculty__name">Fakultät: <?= htmlspecialchars($faculty['name']) ?></h2>
+                <p class="faculty__dean">Dekanat: <?= htmlspecialchars($faculty['dekanat']) ?></p>
+
+                <?php if (!empty($faculty['studiengaenge'])): ?>
+                    <?php foreach ($faculty['studiengaenge'] as $course): ?>
+                        <section class="course">
+                            <h3 class="course__title">Studiengang: <?= htmlspecialchars($course['name']) ?> (Typ: <?= htmlspecialchars($course['typ']) ?>)</h3>
+                            <?php if (!empty($course['module'])): ?>
+                                <ul class="course__module-list">
+                                    <?php foreach ($course['module'] as $module): ?>
+                                        <li class="module" data-module-id="<?= htmlspecialchars($module['modul_code']) ?>">
+                                            <h4 class="module__name">Modul: <?= htmlspecialchars($module['name']) ?> (<?= htmlspecialchars($module['modul_code']) ?>)</h4>
+                                            <p class="module__semester">Semester: <?= htmlspecialchars($module['semester']) ?></p>
+                                            <p class="module__lecturer">Dozent: <?= htmlspecialchars($module['dozent_name'] ?? 'N/A') ?></p>
+
+                                            <?php if (!empty($module['studenten'])): ?>
+                                                <h5 class="module__student-heading">Eingeschriebene Studierende:</h5>
+                                                <ul class="student-list">
+                                                    <?php foreach ($module['studenten'] as $student): ?>
+                                                        <li class="student-list__item" data-matrikelnummer="<?= htmlspecialchars($student['matrikelnummer']) ?>">
+                                                            <span class="student-list__matriculation-number">(<?= htmlspecialchars($student['matrikelnummer']) ?>)</span>
+                                                            <?= htmlspecialchars($student['nachname']) ?>, <?= htmlspecialchars($student['vorname']) ?>
+                                                        </li>
+                                                    <?php endforeach; // student loop ?>
+                                                </ul>
+                                            <?php else: ?>
+                                                <p>Keine Studierenden für dieses Modul gefunden.</p>
+                                            <?php endif; // check students ?>
+                                        </li>
+                                    <?php endforeach; // module loop ?>
+                                </ul>
+                            <?php else: ?>
+                                <p>Keine Module für diesen Studiengang gefunden.</p>
+                            <?php endif; // check modules ?>
+                        </section>
+                    <?php endforeach; // course loop ?>
+                <?php else: ?>
+                    <p>Keine Studiengänge für diese Fakultät gefunden.</p>
+                <?php endif; // check courses ?>
+            </section>
+        <?php endforeach; // faculty loop ?>
+    <?php endif; // check university data ?>
+
+</main>
+
+</body>
+</html>

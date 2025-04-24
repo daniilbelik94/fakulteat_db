@@ -1,0 +1,10 @@
+# Конфигурация с секретными данными
+config/config.php
+
+# Папка зависимостей Composer
+vendor/
+
+# Системные файлы macOS/IDE
+.DS_Store
+.idea/
+.vscode/
